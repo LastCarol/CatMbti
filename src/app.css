@@ -1,0 +1,8 @@
+.App {
+  font-family: "MaplestoryLight";
+}
+
+@font-face {
+  font-family: "MaplestoryLight";
+  src: url(/src/assets/fonts/MaplestoryLight.ttf);
+}
