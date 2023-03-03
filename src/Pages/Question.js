@@ -4,20 +4,42 @@ import { Button, ProgressBar } from "react-bootstrap";
 import { QuestionData } from "../assets/data/questiondata";
 
 const Question = () => {
+  const [questionNo, setQuestionNo] = React.useState(0);
+  const [totalScore, setTotalScore] = React.useState([
+    { id: "EI", score: 0 },
+    { id: "SN", score: 0 },
+    { id: "TF", score: 0 },
+    { id: "JP", score: 0 },
+  ]);
+
+  console.log(totalScore);
+
+  const handleClickButtonA = (n) => {
+    setQuestionNo(questionNo + 1);
+  };
+
+  const handleClickButtonB = (n) => {
+    setQuestionNo(questionNo + 1);
+  };
+
   return (
     <Wrapper>
       <ProgressBar
         striped
         variant="danger"
-        now={80}
+        now={(questionNo / QuestionData.length) * 100}
         style={{ marginTop: "20px" }}
       />
-      <Title>{QuestionData[0].title}</Title>
+      <Title>{QuestionData[questionNo].title}</Title>
       <ButtonGroup>
-        <Button style={{ width: "40%", minHeight: "200px", fontSize: "15pt" }}>
-          {QuestionData[0].answera}
+        <Button
+          onClick={() => handleClickButtonA(1)}
+          style={{ width: "40%", minHeight: "200px", fontSize: "15pt" }}
+        >
+          {QuestionData[questionNo].answera}
         </Button>
         <Button
+          onClick={() => handleClickButtonB(0)}
           style={{
             marginLeft: "20px",
             width: "40%",
@@ -25,7 +47,7 @@ const Question = () => {
             fontSize: "15pt",
           }}
         >
-          {QuestionData[0].answerb}
+          {QuestionData[questionNo].answerb}
         </Button>
       </ButtonGroup>
     </Wrapper>
