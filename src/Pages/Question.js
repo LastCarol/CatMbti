@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Button, ProgressBar } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { QuestionData } from "../assets/data/questiondata";
 
 const Question = () => {
@@ -12,14 +13,41 @@ const Question = () => {
     { id: "JP", score: 0 },
   ]);
 
+  const navigate = useNavigate();
+
   console.log(totalScore);
 
-  const handleClickButtonA = (n) => {
-    setQuestionNo(questionNo + 1);
-  };
+  const handleClickButton = (n, type) => {
+    const newScore = totalScore.map((s) =>
+      s.id === type ? { id: s.id, score: s.score + n } : s
+    );
+    setTotalScore(newScore);
+    if (QuestionData.length !== questionNo + 1) {
+      setQuestionNo(questionNo + 1);
+    } else {
+      navigate("/result");
+    }
 
-  const handleClickButtonB = (n) => {
-    setQuestionNo(questionNo + 1);
+    // if (type === "EI") {
+    //   //기존 스코어에 더할 값은 개선
+    //   const addScore = totalScore[0].score + n;
+    //   //새로운 객체
+    //   const newObject = { id: "EI", score: addScore };
+    //   // splice 통해 새로운 객체를 해당객체 자리에 넣어줌
+    //   totalScore.splice(0, 1, newObject);
+    // } else if (type === "SN") {
+    //   const addScore = totalScore[1].score + n;
+    //   const newObject = { id: "SN", score: addScore };
+    //   totalScore.splice(1, 1, newObject);
+    // } else if (type === "TF") {
+    //   const addScore = totalScore[2].score + n;
+    //   const newObject = { id: "TF", score: addScore };
+    //   totalScore.splice(2, 1, newObject);
+    // } else if (type === "JP") {
+    //   const addScore = totalScore[3].score + n;
+    //   const newObject = { id: "JP", score: addScore };
+    //   totalScore.splice(3, 1, newObject);
+    // }
   };
 
   return (
@@ -33,13 +61,13 @@ const Question = () => {
       <Title>{QuestionData[questionNo].title}</Title>
       <ButtonGroup>
         <Button
-          onClick={() => handleClickButtonA(1)}
+          onClick={() => handleClickButton(1, QuestionData[questionNo].type)}
           style={{ width: "40%", minHeight: "200px", fontSize: "15pt" }}
         >
           {QuestionData[questionNo].answera}
         </Button>
         <Button
-          onClick={() => handleClickButtonB(0)}
+          onClick={() => handleClickButton(0, QuestionData[questionNo].type)}
           style={{
             marginLeft: "20px",
             width: "40%",
