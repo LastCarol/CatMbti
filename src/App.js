@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import Home from "./Pages/Home";
 import Result from "./Pages/Result";
 import Question from "./Pages/Question";
