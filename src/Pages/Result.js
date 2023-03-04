@@ -1,15 +1,27 @@
-import react from "react";
+import React from "react";
 import styled from "styled-components";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
 import { Resultdata } from "../assets/data/resultdata";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Result = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const mbti = searchParams.get("mbti");
+  const [resultData2, setResultData] = React.useState();
 
   const handleClickRestart = () => {
     navigate("/");
   };
+
+  React.useEffect(() => {
+    const result = Resultdata.find((s) => s.best === mbti);
+    setResultData(result);
+  }, [mbti]);
+
+  console.log(resultData2);
+
+  // console.log(searchParams);
 
   return (
     <Wrapper>
