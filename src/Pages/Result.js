@@ -37,12 +37,14 @@ const Result = () => {
         <Desc>
           예비 집사님과 찰떡궁합인 고양이는 {resultData2.name} 입니다.
         </Desc>
-        <Button
-          style={{ fontFamily: "MaplestoryLight" }}
-          onClick={handleClickRestart}
-        >
-          테스트 다시하기
-        </Button>
+        <ButtonArea>
+          <Button
+            style={{ fontFamily: "MaplestoryLight" }}
+            onClick={handleClickRestart}
+          >
+            테스트 다시하기
+          </Button>
+        </ButtonArea>
       </Contents>
     </Wrapper>
   );
@@ -84,4 +86,9 @@ const Desc = styled.div`
   font-size: 20pt;
   margin-top: 20px;
   font-family: "MaplestoryLight";
+`;
+
+const ButtonArea = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
