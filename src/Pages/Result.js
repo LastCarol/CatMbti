@@ -18,7 +18,7 @@ const Result = () => {
     const result = ResultData.find((s) => s.best === mbti);
     setResultData(result);
   }, [mbti]);
-  // console.log(searchParams);
+  // console.log(searchParams).;
 
   return (
     <Wrapper>
